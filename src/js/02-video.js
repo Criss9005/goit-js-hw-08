@@ -20,6 +20,7 @@ const currentime = localStorage.getItem("videoplayer-current-time")
 console.log(currentime)
 const timeObject = JSON.parse(currentime)//convierto el string en objeto
 
+
 player.setCurrentTime(timeObject.seconds).then(function() {
     // seconds = the actual time that the player seeked to
 }).catch(function(error) {
