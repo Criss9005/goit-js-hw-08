@@ -11,7 +11,7 @@ import Player from '@vimeo/player';
 
 player.on('timeupdate', _.throttle((e) => {
     
-    timeString = JSON.stringify(e)//convierto en string
+    const timeString = JSON.stringify(e)//convierto en string
     localStorage.setItem('videoplayer-current-time', timeString)
     
 }),1000)
