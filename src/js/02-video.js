@@ -1,5 +1,5 @@
 import Player from '@vimeo/player';
-
+import throttle from 'lodash.throttle'
 
   const iframe = document.querySelector('iframe');
     const player = new Player(iframe);
@@ -9,7 +9,7 @@ import Player from '@vimeo/player';
     }); 
 
 
-player.on('timeupdate', _.throttle((e) => {
+player.on('timeupdate', throttle((e) => {
     
     const timeString = JSON.stringify(e)//convierto en string
     localStorage.setItem('videoplayer-current-time', timeString)
