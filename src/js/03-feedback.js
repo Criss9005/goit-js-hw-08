@@ -8,14 +8,14 @@ const key = {
 }
 
 
-form.addEventListener('input', (e) => {
+form.addEventListener('input', _.throttle((e) => {
     key.email = inputEmail.value
     //console.log(key.email)
     key.message = inputMessage.value
     //console.log(key.message)
     const keyString = JSON.stringify(key)//convierto en string
     localStorage.setItem('feedback-form-state', keyString)
-})
+}),1000)
 
 
 const currenState = localStorage.getItem("feedback-form-state")
@@ -30,5 +30,5 @@ if (currenState != null) {
 console.log(inputEmail.textContent)
 
 form.addEventListener('submit', (e) => {
-    localStorage.clear()
+    localStorage.removeItem('feedback-form-state')
  })
