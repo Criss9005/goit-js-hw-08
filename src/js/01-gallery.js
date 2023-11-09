@@ -1,12 +1,12 @@
 import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css"; 
+import "simplelightbox/dist/simple-lightbox.min.css";
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 
 // Change code below this line
 
 const gallery = document.querySelector('.gallery')
-
+console.log('running')
 galleryItems.forEach(element => {
     const item = document.createElement('li');
     gallery.append(item);
@@ -22,13 +22,19 @@ galleryItems.forEach(element => {
     image.src = element.preview
     image.alt = element.description
     image.data = element.original
+    image.title = element.description
 
 });
 
-
+const options = {
+    disableRightClick: true
+}
 
 gallery.addEventListener('click', (e) => { 
     e.preventDefault()
-    let galleryShow = new SimpleLightbox('.gallery li a'); 
+    let newGallery = new SimpleLightbox('.gallery a', { ...options }); 
+    newGallery.on('closed.simplelightbox', function () {
+	newGallery.refresh()
+});
     
 })
